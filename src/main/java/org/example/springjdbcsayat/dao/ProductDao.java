@@ -8,4 +8,5 @@ public interface ProductDao {
     List<Product> findAll();
     Product findById(int id);
     Product create(Product product);
+    Product update(Product product);
 }

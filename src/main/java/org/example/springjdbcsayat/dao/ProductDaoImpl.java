@@ -47,10 +47,19 @@ public class ProductDaoImpl implements ProductDao {
                 .withTableName("products")
                 .usingGeneratedKeyColumns("id");
         Map<String, Object> map = Map.of("name", product.getName(),
-                "price", 123123,
+                "price", product.getPrice(),
                 "category_id", product.getCategory().getId());
         int id = insert.executeAndReturnKey(map).intValue();
         product.setId(id);
+        return product;
+    }
+
+    @Override
+    public Product update(Product product) {
+        jdbcTemplate.update("update products set name = ?, price = ? where id = ?",
+                product.getName(),
+                product.getPrice(),
+                product.getId());
         return product;
     }
 

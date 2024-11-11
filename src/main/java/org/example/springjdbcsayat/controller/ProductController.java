@@ -27,4 +27,9 @@ public class ProductController {
     public Product create(@RequestBody Product product) {
         return productDao.create(product);
     }
+
+    @PutMapping
+    public Product update(@RequestBody Product product) {
+        return productDao.update(product);
+    }
 }
